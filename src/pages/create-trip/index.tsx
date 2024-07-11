@@ -5,6 +5,7 @@ import { ConfirmTripModal } from "./confirm-trip-modal";
 import { DestinationDateStep } from "./steps /destination-date-step";
 import { InviteGuestsStep } from "./steps /invite-guests-step";
 import { DateRange } from "react-day-picker";
+import { api } from "../../lib/axios";
 
 export function CreateTripPage() {
   const navigate = useNavigate();
@@ -71,10 +72,33 @@ export function CreateTripPage() {
     setEmailsToInvite(newEmailList);
   }
 
-  function createTrip(event: FormEvent<HTMLFormElement>) {
+  async function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log({ destination, ownerName, ownerEmail });
-    navigate("/trips/123");
+
+    if (!destination) {
+      return;
+    }
+
+    if (!eventStartEndDates?.from || !eventStartEndDates?.to) {
+      return;
+    }
+
+    if (emailsToInvite.length === 0) {
+      return;
+    }
+
+    const response = await api.post("/trips", {
+      destination,
+      starts_at: eventStartEndDates.from,
+      ends_at: eventStartEndDates.to,
+      emails_to_invite: emailsToInvite,
+      owner_name: ownerName,
+      owner_email: ownerEmail,
+    });
+
+    const { tripId } = response.data;
+
+    navigate(`/trips/${tripId}`);
   }
 
   return (
