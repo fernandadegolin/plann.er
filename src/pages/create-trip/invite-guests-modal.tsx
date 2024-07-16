@@ -3,7 +3,7 @@ import { FormEvent } from "react";
 import { Button } from "../../components/button";
 
 interface InviteGuestModalProps {
-  closeGuestsModal: () => void;
+  closeGuestsModal: () => void; 
   emailsToInvite: string[];
   removeEmailFromInvites: (email: string) => void;
   addNewEmailToInvite: (event: FormEvent<HTMLFormElement>) => void;
