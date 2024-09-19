@@ -10,3 +10,4 @@ Currently, two official plugins are available:
 ## Link Documentação API
 
 https://nlw-journey.apidocumentation.com/reference#tag/activities/get/trips/{tripId}/activities
+ 
