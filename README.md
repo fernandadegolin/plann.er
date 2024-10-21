@@ -11,4 +11,4 @@ Currently, two official plugins are available:
 
 https://nlw-journey.apidocumentation.com/reference#tag/activities/get/trips/{tripId}/activities
  
- 
+  
